@@ -1,0 +1,671 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		636C02781EAD9AE800B93652 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 636C02771EAD9AE800B93652 /* main.m */; };
+		636C027B1EAD9AE800B93652 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 636C027A1EAD9AE800B93652 /* AppDelegate.m */; };
+		636C02811EAD9AE800B93652 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 636C027F1EAD9AE800B93652 /* Main.storyboard */; };
+		636C02831EAD9AE800B93652 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 636C02821EAD9AE800B93652 /* Assets.xcassets */; };
+		636C02861EAD9AE800B93652 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 636C02841EAD9AE800B93652 /* LaunchScreen.storyboard */; };
+		636C033E1EADDD9000B93652 /* AFHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 636C03121EADDD9000B93652 /* AFHTTPSessionManager.m */; };
+		636C033F1EADDD9000B93652 /* AFNetworkReachabilityManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 636C03151EADDD9000B93652 /* AFNetworkReachabilityManager.m */; };
+		636C03401EADDD9000B93652 /* AFSecurityPolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = 636C03171EADDD9000B93652 /* AFSecurityPolicy.m */; };
+		636C03411EADDD9000B93652 /* AFURLRequestSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 636C03191EADDD9000B93652 /* AFURLRequestSerialization.m */; };
+		636C03421EADDD9000B93652 /* AFURLResponseSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 636C031B1EADDD9000B93652 /* AFURLResponseSerialization.m */; };
+		636C03431EADDD9000B93652 /* AFURLSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 636C031D1EADDD9000B93652 /* AFURLSessionManager.m */; };
+		636C03441EADDD9000B93652 /* bg_fog.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 636C03221EADDD9000B93652 /* bg_fog.jpg */; };
+		636C03451EADDD9000B93652 /* tabbar_live@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 636C03231EADDD9000B93652 /* tabbar_live@2x.png */; };
+		636C03461EADDD9000B93652 /* tabbar_live_select@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 636C03241EADDD9000B93652 /* tabbar_live_select@2x.png */; };
+		636C03471EADDD9000B93652 /* tabbar_profile@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 636C03251EADDD9000B93652 /* tabbar_profile@2x.png */; };
+		636C03481EADDD9000B93652 /* tabbar_profile_select@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 636C03261EADDD9000B93652 /* tabbar_profile_select@2x.png */; };
+		636C03491EADDD9000B93652 /* tabbar_weather@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 636C03271EADDD9000B93652 /* tabbar_weather@2x.png */; };
+		636C034A1EADDD9000B93652 /* tabbar_weather_select@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 636C03281EADDD9000B93652 /* tabbar_weather_select@2x.png */; };
+		636C034B1EADDD9000B93652 /* AFAutoPurgingImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 636C032B1EADDD9000B93652 /* AFAutoPurgingImageCache.m */; };
+		636C034C1EADDD9000B93652 /* AFImageDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 636C032D1EADDD9000B93652 /* AFImageDownloader.m */; };
+		636C034D1EADDD9000B93652 /* AFNetworkActivityIndicatorManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 636C032F1EADDD9000B93652 /* AFNetworkActivityIndicatorManager.m */; };
+		636C034E1EADDD9000B93652 /* UIActivityIndicatorView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 636C03311EADDD9000B93652 /* UIActivityIndicatorView+AFNetworking.m */; };
+		636C034F1EADDD9000B93652 /* UIButton+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 636C03331EADDD9000B93652 /* UIButton+AFNetworking.m */; };
+		636C03501EADDD9000B93652 /* UIImageView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 636C03361EADDD9000B93652 /* UIImageView+AFNetworking.m */; };
+		636C03511EADDD9000B93652 /* UIProgressView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 636C03391EADDD9000B93652 /* UIProgressView+AFNetworking.m */; };
+		636C03521EADDD9000B93652 /* UIRefreshControl+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 636C033B1EADDD9000B93652 /* UIRefreshControl+AFNetworking.m */; };
+		636C03531EADDD9000B93652 /* UIWebView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 636C033D1EADDD9000B93652 /* UIWebView+AFNetworking.m */; };
+		636C036E1EADDDA800B93652 /* LiveViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 636C035E1EADDDA800B93652 /* LiveViewController.m */; };
+		636C036F1EADDDA800B93652 /* MeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 636C03641EADDDA800B93652 /* MeViewController.m */; };
+		636C03701EADDDA800B93652 /* WeatherController.m in Sources */ = {isa = PBXBuildFile; fileRef = 636C036A1EADDDA800B93652 /* WeatherController.m */; };
+		636C03731EADDDD800B93652 /* THBasicController.m in Sources */ = {isa = PBXBuildFile; fileRef = 636C03721EADDDD800B93652 /* THBasicController.m */; };
+		636C03791EADE28200B93652 /* THWeatherModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 636C03781EADE28200B93652 /* THWeatherModel.m */; };
+		636C037F1EADF13600B93652 /* THDailyForecastModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 636C037E1EADF13600B93652 /* THDailyForecastModel.m */; };
+		636C03821EADF17300B93652 /* THHourlyForecastModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 636C03811EADF17300B93652 /* THHourlyForecastModel.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		636C02731EAD9AE800B93652 /* THWeather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = THWeather.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		636C02771EAD9AE800B93652 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		636C02791EAD9AE800B93652 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		636C027A1EAD9AE800B93652 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		636C02801EAD9AE800B93652 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		636C02821EAD9AE800B93652 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		636C02851EAD9AE800B93652 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		636C02871EAD9AE800B93652 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		636C03111EADDD9000B93652 /* AFHTTPSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPSessionManager.h; sourceTree = "<group>"; };
+		636C03121EADDD9000B93652 /* AFHTTPSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPSessionManager.m; sourceTree = "<group>"; };
+		636C03131EADDD9000B93652 /* AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFNetworking.h; sourceTree = "<group>"; };
+		636C03141EADDD9000B93652 /* AFNetworkReachabilityManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFNetworkReachabilityManager.h; sourceTree = "<group>"; };
+		636C03151EADDD9000B93652 /* AFNetworkReachabilityManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFNetworkReachabilityManager.m; sourceTree = "<group>"; };
+		636C03161EADDD9000B93652 /* AFSecurityPolicy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFSecurityPolicy.h; sourceTree = "<group>"; };
+		636C03171EADDD9000B93652 /* AFSecurityPolicy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFSecurityPolicy.m; sourceTree = "<group>"; };
+		636C03181EADDD9000B93652 /* AFURLRequestSerialization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFURLRequestSerialization.h; sourceTree = "<group>"; };
+		636C03191EADDD9000B93652 /* AFURLRequestSerialization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLRequestSerialization.m; sourceTree = "<group>"; };
+		636C031A1EADDD9000B93652 /* AFURLResponseSerialization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFURLResponseSerialization.h; sourceTree = "<group>"; };
+		636C031B1EADDD9000B93652 /* AFURLResponseSerialization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLResponseSerialization.m; sourceTree = "<group>"; };
+		636C031C1EADDD9000B93652 /* AFURLSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFURLSessionManager.h; sourceTree = "<group>"; };
+		636C031D1EADDD9000B93652 /* AFURLSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLSessionManager.m; sourceTree = "<group>"; };
+		636C03221EADDD9000B93652 /* bg_fog.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = bg_fog.jpg; sourceTree = "<group>"; };
+		636C03231EADDD9000B93652 /* tabbar_live@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabbar_live@2x.png"; sourceTree = "<group>"; };
+		636C03241EADDD9000B93652 /* tabbar_live_select@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabbar_live_select@2x.png"; sourceTree = "<group>"; };
+		636C03251EADDD9000B93652 /* tabbar_profile@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabbar_profile@2x.png"; sourceTree = "<group>"; };
+		636C03261EADDD9000B93652 /* tabbar_profile_select@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabbar_profile_select@2x.png"; sourceTree = "<group>"; };
+		636C03271EADDD9000B93652 /* tabbar_weather@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabbar_weather@2x.png"; sourceTree = "<group>"; };
+		636C03281EADDD9000B93652 /* tabbar_weather_select@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabbar_weather_select@2x.png"; sourceTree = "<group>"; };
+		636C032A1EADDD9000B93652 /* AFAutoPurgingImageCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFAutoPurgingImageCache.h; sourceTree = "<group>"; };
+		636C032B1EADDD9000B93652 /* AFAutoPurgingImageCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFAutoPurgingImageCache.m; sourceTree = "<group>"; };
+		636C032C1EADDD9000B93652 /* AFImageDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFImageDownloader.h; sourceTree = "<group>"; };
+		636C032D1EADDD9000B93652 /* AFImageDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFImageDownloader.m; sourceTree = "<group>"; };
+		636C032E1EADDD9000B93652 /* AFNetworkActivityIndicatorManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFNetworkActivityIndicatorManager.h; sourceTree = "<group>"; };
+		636C032F1EADDD9000B93652 /* AFNetworkActivityIndicatorManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFNetworkActivityIndicatorManager.m; sourceTree = "<group>"; };
+		636C03301EADDD9000B93652 /* UIActivityIndicatorView+AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIActivityIndicatorView+AFNetworking.h"; sourceTree = "<group>"; };
+		636C03311EADDD9000B93652 /* UIActivityIndicatorView+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIActivityIndicatorView+AFNetworking.m"; sourceTree = "<group>"; };
+		636C03321EADDD9000B93652 /* UIButton+AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+AFNetworking.h"; sourceTree = "<group>"; };
+		636C03331EADDD9000B93652 /* UIButton+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+AFNetworking.m"; sourceTree = "<group>"; };
+		636C03341EADDD9000B93652 /* UIImage+AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+AFNetworking.h"; sourceTree = "<group>"; };
+		636C03351EADDD9000B93652 /* UIImageView+AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+AFNetworking.h"; sourceTree = "<group>"; };
+		636C03361EADDD9000B93652 /* UIImageView+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+AFNetworking.m"; sourceTree = "<group>"; };
+		636C03371EADDD9000B93652 /* UIKit+AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIKit+AFNetworking.h"; sourceTree = "<group>"; };
+		636C03381EADDD9000B93652 /* UIProgressView+AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIProgressView+AFNetworking.h"; sourceTree = "<group>"; };
+		636C03391EADDD9000B93652 /* UIProgressView+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIProgressView+AFNetworking.m"; sourceTree = "<group>"; };
+		636C033A1EADDD9000B93652 /* UIRefreshControl+AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIRefreshControl+AFNetworking.h"; sourceTree = "<group>"; };
+		636C033B1EADDD9000B93652 /* UIRefreshControl+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIRefreshControl+AFNetworking.m"; sourceTree = "<group>"; };
+		636C033C1EADDD9000B93652 /* UIWebView+AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIWebView+AFNetworking.h"; sourceTree = "<group>"; };
+		636C033D1EADDD9000B93652 /* UIWebView+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWebView+AFNetworking.m"; sourceTree = "<group>"; };
+		636C035D1EADDDA800B93652 /* LiveViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LiveViewController.h; sourceTree = "<group>"; };
+		636C035E1EADDDA800B93652 /* LiveViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LiveViewController.m; sourceTree = "<group>"; };
+		636C03631EADDDA800B93652 /* MeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeViewController.h; sourceTree = "<group>"; };
+		636C03641EADDDA800B93652 /* MeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MeViewController.m; sourceTree = "<group>"; };
+		636C03691EADDDA800B93652 /* WeatherController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeatherController.h; sourceTree = "<group>"; };
+		636C036A1EADDDA800B93652 /* WeatherController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeatherController.m; sourceTree = "<group>"; };
+		636C03711EADDDD800B93652 /* THBasicController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THBasicController.h; sourceTree = "<group>"; };
+		636C03721EADDDD800B93652 /* THBasicController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THBasicController.m; sourceTree = "<group>"; };
+		636C03771EADE28200B93652 /* THWeatherModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THWeatherModel.h; sourceTree = "<group>"; };
+		636C03781EADE28200B93652 /* THWeatherModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THWeatherModel.m; sourceTree = "<group>"; };
+		636C037D1EADF13600B93652 /* THDailyForecastModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THDailyForecastModel.h; sourceTree = "<group>"; };
+		636C037E1EADF13600B93652 /* THDailyForecastModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THDailyForecastModel.m; sourceTree = "<group>"; };
+		636C03801EADF17300B93652 /* THHourlyForecastModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THHourlyForecastModel.h; sourceTree = "<group>"; };
+		636C03811EADF17300B93652 /* THHourlyForecastModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THHourlyForecastModel.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		636C02701EAD9AE800B93652 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		636C026A1EAD9AE800B93652 = {
+			isa = PBXGroup;
+			children = (
+				636C02751EAD9AE800B93652 /* THWeather */,
+				636C02741EAD9AE800B93652 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		636C02741EAD9AE800B93652 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				636C02731EAD9AE800B93652 /* THWeather.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		636C02751EAD9AE800B93652 /* THWeather */ = {
+			isa = PBXGroup;
+			children = (
+				636C030F1EADDD9000B93652 /* 资源库 */,
+				636C03541EADDDA800B93652 /* base */,
+				636C02791EAD9AE800B93652 /* AppDelegate.h */,
+				636C027A1EAD9AE800B93652 /* AppDelegate.m */,
+				636C027F1EAD9AE800B93652 /* Main.storyboard */,
+				636C02821EAD9AE800B93652 /* Assets.xcassets */,
+				636C02841EAD9AE800B93652 /* LaunchScreen.storyboard */,
+				636C02871EAD9AE800B93652 /* Info.plist */,
+				636C02761EAD9AE800B93652 /* Supporting Files */,
+			);
+			path = THWeather;
+			sourceTree = "<group>";
+		};
+		636C02761EAD9AE800B93652 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				636C02771EAD9AE800B93652 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		636C030F1EADDD9000B93652 /* 资源库 */ = {
+			isa = PBXGroup;
+			children = (
+				636C03101EADDD9000B93652 /* AFNetworking */,
+				636C031E1EADDD9000B93652 /* LBBlurredImage */,
+				636C03211EADDD9000B93652 /* Tabbar */,
+				636C03291EADDD9000B93652 /* UIKit+AFNetworking */,
+			);
+			path = "资源库";
+			sourceTree = "<group>";
+		};
+		636C03101EADDD9000B93652 /* AFNetworking */ = {
+			isa = PBXGroup;
+			children = (
+				636C03111EADDD9000B93652 /* AFHTTPSessionManager.h */,
+				636C03121EADDD9000B93652 /* AFHTTPSessionManager.m */,
+				636C03131EADDD9000B93652 /* AFNetworking.h */,
+				636C03141EADDD9000B93652 /* AFNetworkReachabilityManager.h */,
+				636C03151EADDD9000B93652 /* AFNetworkReachabilityManager.m */,
+				636C03161EADDD9000B93652 /* AFSecurityPolicy.h */,
+				636C03171EADDD9000B93652 /* AFSecurityPolicy.m */,
+				636C03181EADDD9000B93652 /* AFURLRequestSerialization.h */,
+				636C03191EADDD9000B93652 /* AFURLRequestSerialization.m */,
+				636C031A1EADDD9000B93652 /* AFURLResponseSerialization.h */,
+				636C031B1EADDD9000B93652 /* AFURLResponseSerialization.m */,
+				636C031C1EADDD9000B93652 /* AFURLSessionManager.h */,
+				636C031D1EADDD9000B93652 /* AFURLSessionManager.m */,
+			);
+			path = AFNetworking;
+			sourceTree = "<group>";
+		};
+		636C031E1EADDD9000B93652 /* LBBlurredImage */ = {
+			isa = PBXGroup;
+			children = (
+				636C031F1EADDD9000B93652 /* LBBlurredImage */,
+				636C03201EADDD9000B93652 /* Resources */,
+			);
+			path = LBBlurredImage;
+			sourceTree = "<group>";
+		};
+		636C031F1EADDD9000B93652 /* LBBlurredImage */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = LBBlurredImage;
+			sourceTree = "<group>";
+		};
+		636C03201EADDD9000B93652 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		636C03211EADDD9000B93652 /* Tabbar */ = {
+			isa = PBXGroup;
+			children = (
+				636C03221EADDD9000B93652 /* bg_fog.jpg */,
+				636C03231EADDD9000B93652 /* tabbar_live@2x.png */,
+				636C03241EADDD9000B93652 /* tabbar_live_select@2x.png */,
+				636C03251EADDD9000B93652 /* tabbar_profile@2x.png */,
+				636C03261EADDD9000B93652 /* tabbar_profile_select@2x.png */,
+				636C03271EADDD9000B93652 /* tabbar_weather@2x.png */,
+				636C03281EADDD9000B93652 /* tabbar_weather_select@2x.png */,
+			);
+			path = Tabbar;
+			sourceTree = "<group>";
+		};
+		636C03291EADDD9000B93652 /* UIKit+AFNetworking */ = {
+			isa = PBXGroup;
+			children = (
+				636C032A1EADDD9000B93652 /* AFAutoPurgingImageCache.h */,
+				636C032B1EADDD9000B93652 /* AFAutoPurgingImageCache.m */,
+				636C032C1EADDD9000B93652 /* AFImageDownloader.h */,
+				636C032D1EADDD9000B93652 /* AFImageDownloader.m */,
+				636C032E1EADDD9000B93652 /* AFNetworkActivityIndicatorManager.h */,
+				636C032F1EADDD9000B93652 /* AFNetworkActivityIndicatorManager.m */,
+				636C03301EADDD9000B93652 /* UIActivityIndicatorView+AFNetworking.h */,
+				636C03311EADDD9000B93652 /* UIActivityIndicatorView+AFNetworking.m */,
+				636C03321EADDD9000B93652 /* UIButton+AFNetworking.h */,
+				636C03331EADDD9000B93652 /* UIButton+AFNetworking.m */,
+				636C03341EADDD9000B93652 /* UIImage+AFNetworking.h */,
+				636C03351EADDD9000B93652 /* UIImageView+AFNetworking.h */,
+				636C03361EADDD9000B93652 /* UIImageView+AFNetworking.m */,
+				636C03371EADDD9000B93652 /* UIKit+AFNetworking.h */,
+				636C03381EADDD9000B93652 /* UIProgressView+AFNetworking.h */,
+				636C03391EADDD9000B93652 /* UIProgressView+AFNetworking.m */,
+				636C033A1EADDD9000B93652 /* UIRefreshControl+AFNetworking.h */,
+				636C033B1EADDD9000B93652 /* UIRefreshControl+AFNetworking.m */,
+				636C033C1EADDD9000B93652 /* UIWebView+AFNetworking.h */,
+				636C033D1EADDD9000B93652 /* UIWebView+AFNetworking.m */,
+			);
+			path = "UIKit+AFNetworking";
+			sourceTree = "<group>";
+		};
+		636C03541EADDDA800B93652 /* base */ = {
+			isa = PBXGroup;
+			children = (
+				636C03551EADDDA800B93652 /* Basic */,
+				636C035B1EADDDA800B93652 /* Live */,
+				636C03611EADDDA800B93652 /* Me */,
+				636C03671EADDDA800B93652 /* Weather */,
+			);
+			path = base;
+			sourceTree = "<group>";
+		};
+		636C03551EADDDA800B93652 /* Basic */ = {
+			isa = PBXGroup;
+			children = (
+				636C03561EADDDA800B93652 /* Controller */,
+				636C03571EADDDA800B93652 /* Model */,
+				636C035A1EADDDA800B93652 /* View */,
+			);
+			path = Basic;
+			sourceTree = "<group>";
+		};
+		636C03561EADDDA800B93652 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				636C03711EADDDD800B93652 /* THBasicController.h */,
+				636C03721EADDDD800B93652 /* THBasicController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		636C03571EADDDA800B93652 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		636C035A1EADDDA800B93652 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		636C035B1EADDDA800B93652 /* Live */ = {
+			isa = PBXGroup;
+			children = (
+				636C035C1EADDDA800B93652 /* Controller */,
+				636C035F1EADDDA800B93652 /* Model */,
+				636C03601EADDDA800B93652 /* View */,
+			);
+			path = Live;
+			sourceTree = "<group>";
+		};
+		636C035C1EADDDA800B93652 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				636C035D1EADDDA800B93652 /* LiveViewController.h */,
+				636C035E1EADDDA800B93652 /* LiveViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		636C035F1EADDDA800B93652 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		636C03601EADDDA800B93652 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		636C03611EADDDA800B93652 /* Me */ = {
+			isa = PBXGroup;
+			children = (
+				636C03621EADDDA800B93652 /* Controller */,
+				636C03651EADDDA800B93652 /* Model */,
+				636C03661EADDDA800B93652 /* View */,
+			);
+			path = Me;
+			sourceTree = "<group>";
+		};
+		636C03621EADDDA800B93652 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				636C03631EADDDA800B93652 /* MeViewController.h */,
+				636C03641EADDDA800B93652 /* MeViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		636C03651EADDDA800B93652 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		636C03661EADDDA800B93652 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		636C03671EADDDA800B93652 /* Weather */ = {
+			isa = PBXGroup;
+			children = (
+				636C03681EADDDA800B93652 /* Controller */,
+				636C036B1EADDDA800B93652 /* Model */,
+				636C036C1EADDDA800B93652 /* View */,
+			);
+			path = Weather;
+			sourceTree = "<group>";
+		};
+		636C03681EADDDA800B93652 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				636C03691EADDDA800B93652 /* WeatherController.h */,
+				636C036A1EADDDA800B93652 /* WeatherController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		636C036B1EADDDA800B93652 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				636C03771EADE28200B93652 /* THWeatherModel.h */,
+				636C03781EADE28200B93652 /* THWeatherModel.m */,
+				636C037D1EADF13600B93652 /* THDailyForecastModel.h */,
+				636C037E1EADF13600B93652 /* THDailyForecastModel.m */,
+				636C03801EADF17300B93652 /* THHourlyForecastModel.h */,
+				636C03811EADF17300B93652 /* THHourlyForecastModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		636C036C1EADDDA800B93652 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		636C02721EAD9AE800B93652 /* THWeather */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 636C028A1EAD9AE800B93652 /* Build configuration list for PBXNativeTarget "THWeather" */;
+			buildPhases = (
+				636C026F1EAD9AE800B93652 /* Sources */,
+				636C02701EAD9AE800B93652 /* Frameworks */,
+				636C02711EAD9AE800B93652 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = THWeather;
+			productName = THWeather;
+			productReference = 636C02731EAD9AE800B93652 /* THWeather.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		636C026B1EAD9AE800B93652 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0830;
+				ORGANIZATIONNAME = "嗷嗷叫aoaojiao";
+				TargetAttributes = {
+					636C02721EAD9AE800B93652 = {
+						CreatedOnToolsVersion = 8.3.1;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 636C026E1EAD9AE800B93652 /* Build configuration list for PBXProject "THWeather" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 636C026A1EAD9AE800B93652;
+			productRefGroup = 636C02741EAD9AE800B93652 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				636C02721EAD9AE800B93652 /* THWeather */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		636C02711EAD9AE800B93652 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				636C03461EADDD9000B93652 /* tabbar_live_select@2x.png in Resources */,
+				636C03471EADDD9000B93652 /* tabbar_profile@2x.png in Resources */,
+				636C02861EAD9AE800B93652 /* LaunchScreen.storyboard in Resources */,
+				636C034A1EADDD9000B93652 /* tabbar_weather_select@2x.png in Resources */,
+				636C03451EADDD9000B93652 /* tabbar_live@2x.png in Resources */,
+				636C03481EADDD9000B93652 /* tabbar_profile_select@2x.png in Resources */,
+				636C03491EADDD9000B93652 /* tabbar_weather@2x.png in Resources */,
+				636C03441EADDD9000B93652 /* bg_fog.jpg in Resources */,
+				636C02831EAD9AE800B93652 /* Assets.xcassets in Resources */,
+				636C02811EAD9AE800B93652 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		636C026F1EAD9AE800B93652 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				636C033E1EADDD9000B93652 /* AFHTTPSessionManager.m in Sources */,
+				636C03431EADDD9000B93652 /* AFURLSessionManager.m in Sources */,
+				636C03521EADDD9000B93652 /* UIRefreshControl+AFNetworking.m in Sources */,
+				636C03401EADDD9000B93652 /* AFSecurityPolicy.m in Sources */,
+				636C027B1EAD9AE800B93652 /* AppDelegate.m in Sources */,
+				636C03511EADDD9000B93652 /* UIProgressView+AFNetworking.m in Sources */,
+				636C034D1EADDD9000B93652 /* AFNetworkActivityIndicatorManager.m in Sources */,
+				636C03501EADDD9000B93652 /* UIImageView+AFNetworking.m in Sources */,
+				636C03411EADDD9000B93652 /* AFURLRequestSerialization.m in Sources */,
+				636C03821EADF17300B93652 /* THHourlyForecastModel.m in Sources */,
+				636C034E1EADDD9000B93652 /* UIActivityIndicatorView+AFNetworking.m in Sources */,
+				636C03531EADDD9000B93652 /* UIWebView+AFNetworking.m in Sources */,
+				636C033F1EADDD9000B93652 /* AFNetworkReachabilityManager.m in Sources */,
+				636C03791EADE28200B93652 /* THWeatherModel.m in Sources */,
+				636C034B1EADDD9000B93652 /* AFAutoPurgingImageCache.m in Sources */,
+				636C036F1EADDDA800B93652 /* MeViewController.m in Sources */,
+				636C03731EADDDD800B93652 /* THBasicController.m in Sources */,
+				636C034C1EADDD9000B93652 /* AFImageDownloader.m in Sources */,
+				636C03701EADDDA800B93652 /* WeatherController.m in Sources */,
+				636C03421EADDD9000B93652 /* AFURLResponseSerialization.m in Sources */,
+				636C036E1EADDDA800B93652 /* LiveViewController.m in Sources */,
+				636C034F1EADDD9000B93652 /* UIButton+AFNetworking.m in Sources */,
+				636C02781EAD9AE800B93652 /* main.m in Sources */,
+				636C037F1EADF13600B93652 /* THDailyForecastModel.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		636C027F1EAD9AE800B93652 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				636C02801EAD9AE800B93652 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		636C02841EAD9AE800B93652 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				636C02851EAD9AE800B93652 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		636C02881EAD9AE800B93652 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		636C02891EAD9AE800B93652 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		636C028B1EAD9AE800B93652 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = THWeather/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.aoao.THWeather;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		636C028C1EAD9AE800B93652 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = THWeather/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.aoao.THWeather;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		636C026E1EAD9AE800B93652 /* Build configuration list for PBXProject "THWeather" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				636C02881EAD9AE800B93652 /* Debug */,
+				636C02891EAD9AE800B93652 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		636C028A1EAD9AE800B93652 /* Build configuration list for PBXNativeTarget "THWeather" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				636C028B1EAD9AE800B93652 /* Debug */,
+				636C028C1EAD9AE800B93652 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 636C026B1EAD9AE800B93652 /* Project object */;
+}
