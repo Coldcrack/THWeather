@@ -12,6 +12,8 @@
 #import "THBasicModel.h"
 #import "THDailyModel.h"
 #import "DailyWeatherCell.h"
+#import "THHourModel.h"
+#import "HourlyWeatherCell.h"
 @interface WeatherController ()
 
 {
@@ -21,9 +23,6 @@
     UILabel *conditionsLabel;
     UILabel *temperatureLabel;
     UILabel *hiloLabel;
-
-
-    NSMutableArray *_Arr;
     
 
 }
@@ -33,6 +32,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    _dailyArray = [[NSMutableArray alloc]init];
+    _hourlyArray = [[NSMutableArray alloc]init];
     //设置Weather背景
     self.screenHeight = [UIScreen mainScreen].bounds.size.height;
     UIImage *background = [UIImage imageNamed:@"bg_fog.jpg"];
@@ -129,10 +130,10 @@
             hiloLabel.text = [NSString stringWithFormat:@"%@/%@°C",weatherModel.mintmp,weatherModel.maxtmp];
             cityLabel.text = [NSString stringWithFormat:@"%@\t%@",basicModel.city,basicModel.cnty];
             if ([weatherModel.txt_d isEqualToString:weatherModel.txt_n]) {
-                conditionsLabel.text = weatherModel.txt_d;
+                conditionsLabel.text = [NSString stringWithFormat:@"%@",weatherModel.txt_d];
             }
             conditionsLabel.text = [NSString stringWithFormat:@"%@转%@",weatherModel.txt_d,weatherModel.txt_n];
-            
+            //填充iconView图标
             //1. 获取配置文件
             NSString *path = [[NSBundle mainBundle] pathForResource:@"weatherImage" ofType:@"plist"];
             NSDictionary *weatherDic = [NSDictionary dictionaryWithContentsOfFile:path];
@@ -157,55 +158,95 @@
             UIImage *image = [UIImage imageNamed:imageName];
             iconView.image = image;
             
-//            if (weatherModel.txt_d == @"晴"){
-//                //1.png
-//            }
             
             
         }
     }];
     [dataTask resume];
-    NSURL *forecasetURL = [NSURL URLWithString:@"https://free-api.heweather.com/v5/forecast?city=CN101210101&key=c9b5cd5f40ac4747859cd6e5af2e51a0"];
-    NSURLRequest *forRequest = [NSURLRequest requestWithURL:forecasetURL];
-    NSURLSessionDataTask *forTask = [manager dataTaskWithRequest:forRequest uploadProgress:nil downloadProgress:nil completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error) {
-        THDailyModel *dailyModel = [[THDailyModel alloc] initWithDic:responseObject];
-        
-//        [_Arr addObject:dailyModel];
-    }];
-    [forTask resume];
     
+    
+    NSURL *DayURL = [NSURL URLWithString:@"https://free-api.heweather.com/v5/forecast?city=CN101210101&key=c9b5cd5f40ac4747859cd6e5af2e51a0"];
+    NSURLRequest *DayRequest = [NSURLRequest requestWithURL:DayURL];
+    NSURLSessionDataTask *DayTask = [manager dataTaskWithRequest:DayRequest uploadProgress:nil downloadProgress:nil completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error) {
+        if (error) {
+            NSLog(@"%@",error);
+        }else{
+            NSArray *array = [responseObject[@"HeWeather5"]firstObject][@"daily_forecast"];
+            for (NSDictionary *dd in array) {
+               THDailyModel  *d = [[THDailyModel alloc]initWithDic:dd];
+                [_dailyArray addObject:d];
+            }
+            [_tableView reloadData];
+        }
+
+    }];
+    [DayTask resume];
+    NSURL *hourURL = [NSURL URLWithString:@"https://free-api.heweather.com/v5/hourly?city=CN101210101&key=c9b5cd5f40ac4747859cd6e5af2e51a0"];
+    NSURLRequest *HourRequest = [NSURLRequest requestWithURL:hourURL];
+    NSURLSessionDataTask *HourTask = [manager dataTaskWithRequest:HourRequest uploadProgress:nil downloadProgress:nil completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error) {
+        if (error) {
+            NSLog(@"%@",error);
+        }else {
+            NSArray *array = [responseObject[@"HeWeather5"]firstObject][@"hourly_forecast"];
+            for (NSDictionary *hh in array) {
+                THHourModel *h = [[THHourModel alloc]initWithDic:hh];
+                [_hourlyArray addObject:h];
+            }
+            [_tableView reloadData];
+            
+        }
+    }];
+    [HourTask resume];
     
     
     //设置单元格偏移
-    
+    _tableView.contentInset = UIEdgeInsetsMake(0, 0, 44, 0);
 }
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     
-    return 2;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
-//    return _Arr.count;
-    return 3;
+    return (_dailyArray.count + _hourlyArray.count);
 }
 //添加单元格
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath; {
-    DailyWeatherCell *cell = [tableView dequeueReusableCellWithIdentifier:@"DailyCell"];
-    if (!cell) {
-        cell = [[[NSBundle mainBundle]loadNibNamed:@"DailyWeatherCell" owner:nil options:nil] lastObject];
+    
+//    NSLog(@"%li", indexPath.row);
+    
+    UITableViewCell *cell;
+    
+    if ((indexPath.row) < (_dailyArray.count)) {
+        cell = [tableView dequeueReusableCellWithIdentifier:@"DailyCell"];
+        
+        if (!cell) {
+            cell = [[[NSBundle mainBundle]loadNibNamed:@"DailyWeatherCell" owner:nil options:nil] lastObject];
+        }
+        //填充单元格中的数据
+        ((DailyWeatherCell *)cell).DailyModel = _dailyArray[indexPath.row];
+        
+        
+    }else{
+   
+        cell = [tableView dequeueReusableCellWithIdentifier:@"HourCell"];
+        if (!cell) {
+            cell = [[[NSBundle mainBundle]loadNibNamed:@"HourlyWeatherCell" owner:nil options:nil] lastObject];
+        }
+        ((HourlyWeatherCell *)cell).HourlyModel = _hourlyArray[indexPath.row - _dailyArray.count];
+    
+    
     }
     //设置单元格
     cell.selectionStyle = UITableViewCellSeparatorStyleNone;
     cell.backgroundColor = [UIColor colorWithWhite:0 alpha:0.2];
     cell.detailTextLabel.textColor = [UIColor whiteColor];
-    
-
     return cell;
-    
 }
+
 
 #pragma mark - UITableViewDelegate
 //设置单元格

@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "THDailyModel.h"
 @interface DailyWeatherCell : UITableViewCell
+
+@property (nonatomic,strong)THDailyModel *DailyModel;
 
 @end

@@ -13,16 +13,16 @@
 -(instancetype)initWithDic:(NSDictionary *)dic {
     self = [super init];
     if (self) {
-        NSDictionary *astro = dic[@"HeWeather5"][0][@"daily_forecast"][0][@"astro"];
-        NSDictionary *cond = dic[@"HeWeather5"][0][@"daily_forecast"][0][@"cond"];
-        NSDictionary *tmp =dic[@"HeWeather5"][0][@"daily_forecast"][0][@"tmp"];
-        NSDictionary *wind = dic[@"HeWeather5"][0][@"daily_forecast"][0][@"wind"];
-        _date = dic[@"HeWeather5"][0][@"daily_forecast"][0][@"date"];
-        _hum = dic[@"HeWeather5"][0][@"daily_forecast"][0][@"hum"];
-        _pcpn = dic[@"HeWeather5"][0][@"daily_forecast"][0][@"pcpn"];
-        _pop = dic[@"HeWeather5"][0][@"daily_forecast"][0][@"pop"];
-        _pres = dic[@"HeWeather5"][0][@"daily_forecast"][0][@"pres"];
-        _vis = dic[@"HeWeather5"][0][@"daily_forecast"][0][@"vis"];
+        NSDictionary *astro = dic[@"astro"];
+        NSDictionary *cond = dic[@"cond"];
+        NSDictionary *tmp =dic[@"tmp"];
+        NSDictionary *wind = dic[@"wind"];
+        _date = dic[@"date"];
+        _hum = dic[@"hum"];
+        _pcpn = dic[@"pcpn"];
+        _pop = dic[@"pop"];
+        _pres = dic[@"pres"];
+        _vis = dic[@"vis"];
         _mr = astro[@"mr"];
         _mr = astro[@"ms"];
         _mr = astro[@"sr"];

@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface LiveViewController : UIViewController
-
+@interface LiveViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+@property (nonatomic, strong) UITableView *tableView;
+@property (nonatomic, strong) UIImageView *backgroundImageView;
+@property (nonatomic, assign) CGFloat screenHeight; 
 @end
