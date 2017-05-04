@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>iconName</key>
+		<string>1198775.png</string>
+		<key>title</key>
+		<string>感冒</string>
+		<key>dicKey</key>
+		<string>flu</string>
+	</dict>
+	<dict>
+		<key>iconName</key>
+		<string>1198840.png</string>
+		<key>title</key>
+		<string>运动</string>
+		<key>dicKey</key>
+		<string>sport</string>
+	</dict>
+	<dict>
+		<key>iconName</key>
+		<string>1198776.png</string>
+		<key>title</key>
+		<string>穿衣</string>
+		<key>dicKey</key>
+		<string>drsg</string>
+	</dict>
+	<dict>
+		<key>iconName</key>
+		<string>1198780.png</string>
+		<key>title</key>
+		<string>舒适度</string>
+		<key>dicKey</key>
+		<string>comf</string>
+	</dict>
+	<dict>
+		<key>iconName</key>
+		<string>1198143.png</string>
+		<key>title</key>
+		<string>洗车</string>
+		<key>dicKey</key>
+		<string>cw</string>
+	</dict>
+	<dict>
+		<key>iconName</key>
+		<string>1198774.png</string>
+		<key>title</key>
+		<string>紫外线</string>
+		<key>dicKey</key>
+		<string>uv</string>
+	</dict>
+	<dict>
+		<key>iconName</key>
+		<string>1197998.png</string>
+		<key>title</key>
+		<string>旅游</string>
+		<key>dicKey</key>
+		<string>trav</string>
+	</dict>
+</array>
+</plist>

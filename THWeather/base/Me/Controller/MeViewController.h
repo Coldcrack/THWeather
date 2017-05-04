@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MeViewController : UIViewController
-
+@interface MeViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
+@property (nonatomic, assign) CGFloat screenHeight;
+@property (nonatomic, assign) CGFloat screenWidth;
+@property (nonatomic, strong) UITableView *tableView;
+@property (nonatomic, strong) UIImageView *backgroundImage;
 @end

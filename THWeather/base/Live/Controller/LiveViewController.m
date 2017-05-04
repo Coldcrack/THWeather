@@ -8,78 +8,136 @@
 //
 
 #import "LiveViewController.h"
+#import "AFNetworking.h"
+#import "LiveCell.h"
 
-@interface LiveViewController ()
-
+@interface LiveViewController () <UICollectionViewDataSource>
+{
+    UICollectionView *_collectionView;
+    NSArray *_titiles;
+    NSArray *_imageNames;
+    UIView *header;
+    
+    NSArray *_liveConfig;
+    THLifeModel *_model;
+}
 @end
 
 @implementation LiveViewController
 
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.screenHeight = [UIScreen mainScreen].bounds.size.height; 
-    UIImage *background = [UIImage imageNamed:@"bg_fog_night.jpg"];
+    self.screenHeight = [UIScreen mainScreen].bounds.size.height;
+    self.screenWidth = [UIScreen mainScreen].bounds.size.width;
+
+    _liveConfig = [NSArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"LiveConfig" ofType:@"plist"]];
+    
+    
+    UIImage *background = [UIImage imageNamed:@"bg_blue@2x.png"];
     //添加背景图片
     self.backgroundImageView = [[UIImageView alloc] initWithImage:background];
     self.backgroundImageView.contentMode = UIViewContentModeScaleAspectFill;
     [self.view addSubview:self.backgroundImageView];
-    self.tableView = [[UITableView alloc] init];
-    self.tableView.backgroundColor = [UIColor clearColor];
-    self.tableView.delegate = self;
-    self.tableView.dataSource = self;
-    self.tableView.separatorColor = [UIColor colorWithWhite:1 alpha:0.2];
-    self.tableView.pagingEnabled = YES;
-    [self.view addSubview:self.tableView];
     
-    _tableView.contentInset = UIEdgeInsetsMake(0, 0, 44, 0);
+    CGFloat collectionWidth = self.screenWidth - 20;
+    CGFloat cellWidth = (collectionWidth - 20) / 2;
+    //创建单元格，设置单元格
+    UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
+    layout.itemSize = CGSizeMake(cellWidth, cellWidth * 0.7);
+    layout.minimumInteritemSpacing = 20;
+    
+    _titiles = @[@"穿衣",@"洗车",@"紫外线",@"运动",@"感冒",@"舒适度",@"旅游"];
+    _imageNames = @[@"1198776.png", @"1198143.png",@"1198774.png",@"1198840.png",@"1198775.png",@"1198581.png",@"1197998.png"];
+    
+    
+    
+    
+    _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(10, 64, collectionWidth, self.screenHeight)
+                                         collectionViewLayout:layout];
+    
+    _collectionView.dataSource = self;
+    [self.view addSubview:_collectionView];
+    _collectionView.backgroundColor = [UIColor clearColor];
+    //注册单元格
+    UINib *nib = [UINib nibWithNibName:@"LiveCell" bundle:[NSBundle mainBundle]];
+    [_collectionView registerNib:nib forCellWithReuseIdentifier:@"cell"];
+    //网络访问
+    //city=hangzhou&key=c9b5cd5f40ac4747859cd6e5af2e51a0
+//    https://free-api.heweather.com/v5/suggestion?city=yourcity&key=yourkey
+    
+    _lifeArray = [[NSMutableArray alloc]init];
+    
+    AFURLSessionManager *manager = [[AFURLSessionManager alloc]init];
+    NSURL *lifeURL = [NSURL URLWithString:@"https://free-api.heweather.com/v5/suggestion?city=hangzhou&key=c9b5cd5f40ac4747859cd6e5af2e51a0"];
+    NSURLRequest *request = [NSURLRequest requestWithURL:lifeURL];
+    NSURLSessionDataTask *daTask = [manager dataTaskWithRequest:request uploadProgress:nil downloadProgress:nil completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error) {
+        if (error) {
+            NSLog(@"ERROR:%@",error);
+        }else {
+            NSDictionary *array = [responseObject[@"HeWeather5"]firstObject][@"suggestion"];
+            
+            _model = [[THLifeModel alloc]initWithDic:array];
+            
+        }
+    }];
+    [daTask resume];
+    
+}
 
+
+
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
+    return _liveConfig.count;
 }
-#pragma mark - UITableViewDataSource
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    return 44;
-}
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath; {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellId"];
-    if (!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cell];
+
+
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
+    LiveCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
+    
+    cell.layer.borderColor = [UIColor grayColor].CGColor;
+    cell.layer.borderWidth = 2;
+    
+    
+    
+    
+    NSDictionary *config = _liveConfig[indexPath.item];
+    UIImage *image = [UIImage imageNamed:config[@"iconName"]];
+    NSString *title = config[@"title"];
+    NSString *text = @"未知";
+    NSString *key = config[@"dicKey"];
+    
+//    if ([key isEqualToString:@"sport"]) {
+//        text = _model.sport;
+//    } else if ([key isEqualToString:@"drsg"]) {
+//        text = _model.drsg;
+//    }
+
+    
+    SEL s = NSSelectorFromString(key);
+    if ([_model respondsToSelector:s]) {
+        text = [_model performSelector:s];
     }
     
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    cell.backgroundColor = [UIColor colorWithWhite:0 alpha:0.2];
-    cell.textLabel.textColor = [UIColor blueColor];
-    cell.detailTextLabel.textColor = [UIColor whiteColor];
+    
+    
+    [cell setIconImage:image title:title text:text];
     
     return cell;
 }
-#pragma mark - UITableViewDelegate
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    // TODO: Determine cell height based on screen
-    return 44;
-}
+
 
 - (void)viewWillLayoutSubviews {
     [super viewWillLayoutSubviews];
-    
     CGRect bounds = self.view.bounds;
-    
     self.backgroundImageView.frame = bounds;
-    self.tableView.frame = bounds;
+
 }
+ 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

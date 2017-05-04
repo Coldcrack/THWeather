@@ -32,7 +32,7 @@
     NSString *path = [[NSBundle mainBundle] pathForResource:@"DailyWeatherList" ofType:@"plist"];
     NSDictionary *weatherDic = [NSDictionary dictionaryWithContentsOfFile:path];
     NSString *dailyWeather = _DailyModel.txt_d;
-    NSLog(@"%@",_DailyModel.txt_d);
+//    NSLog(@"%@",_DailyModel.txt_d);
     //4. 根据weatherModel.txt_d来获取图片名  key = weatherModel.txt_d  value =  图片名
     NSString *imageName = weatherDic[dailyWeather];
     UIImage *image = [UIImage imageNamed:imageName];

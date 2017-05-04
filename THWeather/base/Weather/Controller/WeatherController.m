@@ -175,6 +175,8 @@
             for (NSDictionary *dd in array) {
                THDailyModel  *d = [[THDailyModel alloc]initWithDic:dd];
                 [_dailyArray addObject:d];
+                
+//                NSLog(@"%@",_dailyArray);
             }
             [_tableView reloadData];
         }
@@ -216,7 +218,6 @@
 //添加单元格
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath; {
     
-//    NSLog(@"%li", indexPath.row);
     
     UITableViewCell *cell;
     
@@ -236,6 +237,7 @@
         if (!cell) {
             cell = [[[NSBundle mainBundle]loadNibNamed:@"HourlyWeatherCell" owner:nil options:nil] lastObject];
         }
+        
         ((HourlyWeatherCell *)cell).HourlyModel = _hourlyArray[indexPath.row - _dailyArray.count];
     
     

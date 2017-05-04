@@ -17,7 +17,7 @@
 //    _pop.text = HourlyModel.pop;
     _pop.text = [NSString stringWithFormat:@"降水概率:%@",HourlyModel.pop];
 //    _tmp.text = HourlyModel.tmp;
-    _pop.text = [NSString stringWithFormat:@"气温:%@℃",HourlyModel.tmp];
+    _tmp.text = [NSString stringWithFormat:@"气温:%@℃",HourlyModel.tmp];
     _date.text = HourlyModel.date;
     
     
