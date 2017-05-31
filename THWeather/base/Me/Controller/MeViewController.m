@@ -10,6 +10,7 @@
 
 #import "MeViewController.h"
 #import "PersonCell.h"
+#import "WebViewController.h"
 @interface MeViewController ()
 {
     NSArray *_titel;
@@ -39,18 +40,16 @@
     self.tableView.dataSource = self;
     self.tableView.separatorColor = [UIColor colorWithWhite:1 alpha:0.2];
     self.tableView.pagingEnabled = YES;
-//    @"profile_dresshelper_icon@2x.png",@"profile_recommendation_icon@2x.png",@"profile_mojimall_icon@2x.png",@"profile_personalpage_icon@2x.png",
     _imageStr = @[@"profile_recommendation_icon@2x.png",@"profile_mojimall_icon@2x.png",@"profile_personalpage_icon@2x.png",@"profile_share_icon@2x.png",@"profile_settings_icon@2x.png",@"profile_draftbox_icon@2x"];
-//    @"穿衣助手",@"游戏频道",@"墨迹商城",@"空气果",
     _titel = @[@"给个好评",@"商城",@"关于我",@"社交账号",@"设置",@"清除缓存"];
     
     [self.view addSubview:self.tableView];
     [self _createHeadView];
-    
     //设置单元格偏移
 //    _tableView.contentInset = UIEdgeInsetsMake(0, 0, 44, 0);
 
 }
+
 -(void)_createHeadView
 {
     CGRect headerFrame = CGRectMake(0, 0,_screenWidth, 150);
@@ -59,11 +58,6 @@
     [self.view addSubview:header];
     self.tableView.tableHeaderView = header;
     
-    //登录图片
-    UIImageView *enterImageV = [[UIImageView alloc]initWithFrame:CGRectMake(125, 30, 65, 65)];
-    enterImageV.image = [UIImage imageNamed:@"headIcon_placeholder.png"];
-    enterImageV.backgroundColor = [UIColor redColor];
-    [header addSubview:enterImageV];
     //版本label
     UILabel *editionLabel = [[UILabel alloc]initWithFrame:CGRectMake(275, 30, 50, 10)];
     editionLabel.text = @"V5.7.0";
@@ -71,17 +65,8 @@
     editionLabel.font = [UIFont systemFontOfSize:12];
     [header addSubview:editionLabel];
     
-    //墨迹公告图像
-    UIImageView *publicImageV = [[UIImageView alloc]initWithFrame:CGRectMake(200, 50, 30, 30)];
-    publicImageV.image = [UIImage imageNamed:@"cm_forum_msg_normal@2x.png"];
-    publicImageV.backgroundColor = [UIColor redColor];
-    [header addSubview:publicImageV];
-    
     
 }
-//-(void)loadIcon {
-//   
-//}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -95,7 +80,7 @@
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    PersonCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PesonCell"];
+    PersonCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PersonCell"];
     if (!cell) {
         cell = [[[NSBundle mainBundle]loadNibNamed:@"PersonCell" owner:nil options:nil] lastObject];
         //设置单元格
@@ -103,7 +88,6 @@
         cell.backgroundColor = [UIColor colorWithWhite:0 alpha:0.2];
         cell.textLabel.textColor = [UIColor whiteColor];
         cell.detailTextLabel.textColor = [UIColor whiteColor];
-
     }
     
     
@@ -117,6 +101,22 @@
     return cell;
 }
 #pragma mark - UITableViewDelegate
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.row == 0) {
+        UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"提示" message:@"程序猿这么辛苦，是否给个好评" delegate:self cancelButtonTitle:@"否" otherButtonTitles:@"是", nil];
+        [alert show];
+    }
+    if (indexPath.row == 2) {
+        WebViewController * web = [[WebViewController alloc] init];
+        [self presentViewController:web animated:YES completion:nil];
+    }
+    if (indexPath.row == 5) {
+        UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"提示" message:@"是否要清理缓存" delegate:self cancelButtonTitle:@"否" otherButtonTitles:@"是", nil];
+        [alert show];
+    }
+    
+}
 //设置单元格
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 70;

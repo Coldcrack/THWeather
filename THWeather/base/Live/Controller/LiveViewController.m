@@ -62,7 +62,11 @@
     //注册单元格
     UINib *nib = [UINib nibWithNibName:@"LiveCell" bundle:[NSBundle mainBundle]];
     [_collectionView registerNib:nib forCellWithReuseIdentifier:@"cell"];
+    
+    
+    
     //网络访问
+    
     //city=hangzhou&key=c9b5cd5f40ac4747859cd6e5af2e51a0
 //    https://free-api.heweather.com/v5/suggestion?city=yourcity&key=yourkey
     

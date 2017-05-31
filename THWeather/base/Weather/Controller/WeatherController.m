@@ -14,7 +14,8 @@
 #import "DailyWeatherCell.h"
 #import "THHourModel.h"
 #import "HourlyWeatherCell.h"
-@interface WeatherController ()
+#import <CoreLocation/CoreLocation.h>
+@interface WeatherController ()<CLLocationManagerDelegate>
 
 {
     UIView *header;
@@ -23,6 +24,7 @@
     UILabel *conditionsLabel;
     UILabel *temperatureLabel;
     UILabel *hiloLabel;
+    CLLocationManager *_locationManager;
     
 
 }
@@ -109,100 +111,159 @@
     conditionsLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:18];
     conditionsLabel.textColor = [UIColor whiteColor];
     [header addSubview:conditionsLabel];
+    
+    //定位与位置反编码
+    // 请求定位权限 CLLocationManager 定位管理器
+    _locationManager = [[CLLocationManager alloc]init];
+    //    _geocoder = [[CLGeocoder alloc]init];
+    
+    [_locationManager requestWhenInUseAuthorization];
+    
+    //设定定位精准度
+    //kCLLocationAccuracyBest;                  最高精准度   耗电量大
+    //kCLLocationAccuracyNearestTenMeters;      10米        最常用
+    //kCLLocationAccuracyHundredMeters;         100米
+    //kCLLocationAccuracyKilometer;             1000米
+    //kCLLocationAccuracyThreeKilometers;       3000米      美团定位所在城市，确定显示的内容
+    _locationManager.desiredAccuracy  = kCLLocationAccuracyThreeKilometers;
+    //设置代理 获取定位结果
+    _locationManager.delegate = self;
+    
+    //开启定位
+    [_locationManager startUpdatingLocation];
+//    NSLog(@"%@",)
 
+    
+    
     //设置网络访问
     //city=hangzhou&key=c9b5cd5f40ac4747859cd6e5af2e51a0
     //CN101210101  杭州
 //    https://free-api.heweather.com/v5/weather?city=CN101210101&key=c9b5cd5f40ac4747859cd6e5af2e51a0
    
-    AFURLSessionManager *manager = [[AFURLSessionManager alloc]init];
-    NSURL *weatherURL = [NSURL URLWithString:@"https://free-api.heweather.com/v5/weather?city=CN101210101&key=c9b5cd5f40ac4747859cd6e5af2e51a0"];
-    NSURLRequest *request = [NSURLRequest requestWithURL:weatherURL];
-    NSURLSessionDataTask *dataTask = [manager dataTaskWithRequest:request uploadProgress:nil downloadProgress:nil completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error) {
-        if (error) {
-            NSLog(@"ERROR:%@",error);
-        }else {
-            
-            THWeatherModel *weatherModel = [[THWeatherModel alloc] initWithDic:responseObject];
-            THBasicModel *basicModel = [[THBasicModel alloc] initWithDic:responseObject];
-//            //更新控件的文本
-            temperatureLabel.text = [NSString stringWithFormat:@"%@°",weatherModel.tmp];
-            hiloLabel.text = [NSString stringWithFormat:@"%@/%@°C",weatherModel.mintmp,weatherModel.maxtmp];
-            cityLabel.text = [NSString stringWithFormat:@"%@\t%@",basicModel.city,basicModel.cnty];
-            if ([weatherModel.txt_d isEqualToString:weatherModel.txt_n]) {
-                conditionsLabel.text = [NSString stringWithFormat:@"%@",weatherModel.txt_d];
-            }
-            conditionsLabel.text = [NSString stringWithFormat:@"%@转%@",weatherModel.txt_d,weatherModel.txt_n];
-            //填充iconView图标
-            //1. 获取配置文件
-            NSString *path = [[NSBundle mainBundle] pathForResource:@"weatherImage" ofType:@"plist"];
-            NSDictionary *weatherDic = [NSDictionary dictionaryWithContentsOfFile:path];
-            //2. 判断当前时间 NSDate
-            NSString *timeKey = @"day";
-            NSString *nowWeather = weatherModel.txt_d;
-            
-            
-            NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
-            [formatter setDateFormat:@"HH"];
-            NSString *str = [formatter stringFromDate:[NSDate date]];
-            int time = [str intValue];
-            if (time>=18||time<=06) {
-                timeKey = @"night";
-                nowWeather = weatherModel.txt_n;
-            }
-            
-            //3. 选用合适的配置列表
-            NSDictionary *imageNameDic = weatherDic[timeKey];
-            //4. 根据weatherModel.txt_d来获取图片名  key = weatherModel.txt_d  value =  图片名
-            NSString *imageName = imageNameDic[nowWeather];
-            UIImage *image = [UIImage imageNamed:imageName];
-            iconView.image = image;
-            
-            
-            
-        }
-    }];
-    [dataTask resume];
-    
-    
-    NSURL *DayURL = [NSURL URLWithString:@"https://free-api.heweather.com/v5/forecast?city=CN101210101&key=c9b5cd5f40ac4747859cd6e5af2e51a0"];
-    NSURLRequest *DayRequest = [NSURLRequest requestWithURL:DayURL];
-    NSURLSessionDataTask *DayTask = [manager dataTaskWithRequest:DayRequest uploadProgress:nil downloadProgress:nil completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error) {
-        if (error) {
-            NSLog(@"%@",error);
-        }else{
-            NSArray *array = [responseObject[@"HeWeather5"]firstObject][@"daily_forecast"];
-            for (NSDictionary *dd in array) {
-               THDailyModel  *d = [[THDailyModel alloc]initWithDic:dd];
-                [_dailyArray addObject:d];
-                
-//                NSLog(@"%@",_dailyArray);
-            }
-            [_tableView reloadData];
-        }
-
-    }];
-    [DayTask resume];
-    NSURL *hourURL = [NSURL URLWithString:@"https://free-api.heweather.com/v5/hourly?city=CN101210101&key=c9b5cd5f40ac4747859cd6e5af2e51a0"];
-    NSURLRequest *HourRequest = [NSURLRequest requestWithURL:hourURL];
-    NSURLSessionDataTask *HourTask = [manager dataTaskWithRequest:HourRequest uploadProgress:nil downloadProgress:nil completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error) {
-        if (error) {
-            NSLog(@"%@",error);
-        }else {
-            NSArray *array = [responseObject[@"HeWeather5"]firstObject][@"hourly_forecast"];
-            for (NSDictionary *hh in array) {
-                THHourModel *h = [[THHourModel alloc]initWithDic:hh];
-                [_hourlyArray addObject:h];
-            }
-            [_tableView reloadData];
-            
-        }
-    }];
-    [HourTask resume];
     
     
     //设置单元格偏移
     _tableView.contentInset = UIEdgeInsetsMake(0, 0, 44, 0);
+}
+#pragma mark - CLLocationManagerDelegate
+-(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations {
+    
+    static bool isFirst = YES;
+    if(isFirst)
+    {
+        isFirst = NO;
+    
+    [_locationManager stopUpdatingLocation];
+    
+    CLLocation *location = locations.lastObject;
+    
+    
+    CLGeocoder *gecoder = [[CLGeocoder alloc] init];
+    
+    [gecoder reverseGeocodeLocation:location completionHandler:^(NSArray<CLPlacemark *> * _Nullable placemarks, NSError * _Nullable error) {
+        CLPlacemark *placemark = [placemarks firstObject];
+//        NSString *address = [NSString stringWithFormat:@"%@",placemark.addressDictionary];
+        cityLabel.text = [NSString stringWithFormat:@"%@\t%@\t%@",placemark.addressDictionary[@"State"],placemark.addressDictionary[@"City"],placemark.addressDictionary[@"SubLocality"]];
+//        NSLog(@"%@",address);
+        NSString *adcity = [NSString stringWithFormat:@"%@",placemark.addressDictionary[@"City"]];
+//        NSLog(@"%@",adcity);
+       
+        
+        AFURLSessionManager *manager = [[AFURLSessionManager alloc]init];
+        NSURL *weatherURL = [NSURL URLWithString:[[NSString stringWithFormat:@"https://free-api.heweather.com/v5/weather?city=%@&key=c9b5cd5f40ac4747859cd6e5af2e51a0",adcity] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+        
+        
+        NSURLRequest *request = [NSURLRequest requestWithURL:weatherURL];
+        NSURLSessionDataTask *dataTask = [manager dataTaskWithRequest:request uploadProgress:nil downloadProgress:nil completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error) {
+            if (error) {
+                NSLog(@"ERROR:%@",error);
+            }else {
+                
+                THWeatherModel *weatherModel = [[THWeatherModel alloc] initWithDic:responseObject];
+//                THBasicModel *basicModel = [[THBasicModel alloc] initWithDic:responseObject];
+                //            //更新控件的文本
+                temperatureLabel.text = [NSString stringWithFormat:@"%@°",weatherModel.tmp];
+                hiloLabel.text = [NSString stringWithFormat:@"%@/%@°C",weatherModel.mintmp,weatherModel.maxtmp];
+                //            cityLabel.text = [NSString stringWithFormat:@"%@\t%@",basicModel.city,basicModel.cnty];
+                if ([weatherModel.txt_d isEqualToString:weatherModel.txt_n]) {
+                    conditionsLabel.text = [NSString stringWithFormat:@"%@转%@",weatherModel.txt_d,weatherModel.txt_n];
+                }
+                conditionsLabel.text = [NSString stringWithFormat:@"%@",weatherModel.txt_d];
+
+                //填充iconView图标
+                //1. 获取配置文件
+                NSString *path = [[NSBundle mainBundle] pathForResource:@"weatherImage" ofType:@"plist"];
+                NSDictionary *weatherDic = [NSDictionary dictionaryWithContentsOfFile:path];
+                //2. 判断当前时间 NSDate
+                NSString *timeKey = @"day";
+                NSString *nowWeather = weatherModel.txt_d;
+                
+                
+                NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
+                [formatter setDateFormat:@"HH"];
+                NSString *str = [formatter stringFromDate:[NSDate date]];
+                int time = [str intValue];
+                if (time>=18||time<=06) {
+                    timeKey = @"night";
+                    nowWeather = weatherModel.txt_n;
+                }
+                
+                //3. 选用合适的配置列表
+                NSDictionary *imageNameDic = weatherDic[timeKey];
+                //4. 根据weatherModel.txt_d来获取图片名  key = weatherModel.txt_d  value =  图片名
+                NSString *imageName = imageNameDic[nowWeather];
+                UIImage *image = [UIImage imageNamed:imageName];
+                iconView.image = image;
+                
+                
+                
+            }
+        }];
+        [dataTask resume];
+        
+        
+        NSURL *DayURL = [NSURL URLWithString:[[NSString stringWithFormat:@"https://free-api.heweather.com/v5/forecast?city=%@&key=c9b5cd5f40ac4747859cd6e5af2e51a0",adcity] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+        NSURLRequest *DayRequest = [NSURLRequest requestWithURL:DayURL];
+        NSURLSessionDataTask *DayTask = [manager dataTaskWithRequest:DayRequest uploadProgress:nil downloadProgress:nil completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error) {
+            if (error) {
+                NSLog(@"%@",error);
+            }else{
+                NSArray *array = [responseObject[@"HeWeather5"]firstObject][@"daily_forecast"];
+                for (NSDictionary *dd in array) {
+                    THDailyModel  *d = [[THDailyModel alloc]initWithDic:dd];
+                    [_dailyArray addObject:d];
+                    
+                    //                NSLog(@"%@",_dailyArray);
+                }
+                [_tableView reloadData];
+            }
+            
+        }];
+        [DayTask resume];
+        NSURL *hourURL = [NSURL URLWithString:[[NSString stringWithFormat:@"https://free-api.heweather.com/v5/hourly?city=%@&key=c9b5cd5f40ac4747859cd6e5af2e51a0",adcity] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+        NSURLRequest *HourRequest = [NSURLRequest requestWithURL:hourURL];
+        NSURLSessionDataTask *HourTask = [manager dataTaskWithRequest:HourRequest uploadProgress:nil downloadProgress:nil completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error) {
+            if (error) {
+                NSLog(@"%@",error);
+            }else {
+                NSArray *array = [responseObject[@"HeWeather5"]firstObject][@"hourly_forecast"];
+                for (NSDictionary *hh in array) {
+                    THHourModel *h = [[THHourModel alloc]initWithDic:hh];
+                    [_hourlyArray addObject:h];
+                }
+                [_tableView reloadData];
+                
+            }
+        }];
+        [HourTask resume];
+    
+        
+        
+        
+        
+    }];
+    }
+
 }
 #pragma mark - UITableViewDataSource
 
